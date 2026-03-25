@@ -1,0 +1,41 @@
+{
+  "name": "@nivedganga/react-auto-skeletonizer",
+  "version": "1.0.1",
+  "description": "Automatically converts any React UI tree into a shimmering skeleton loader.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NivedGanga/react-auto-skeletonizer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NivedGanga/react-auto-skeletonizer/issues"
+  },
+  "homepage": "https://github.com/NivedGanga/react-auto-skeletonizer#readme",
+  "main": "./dist/react-auto-skeletonizer.umd.js",
+  "module": "./dist/react-auto-skeletonizer.es.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/react-auto-skeletonizer.es.js",
+      "require": "./dist/react-auto-skeletonizer.umd.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "npx tsc --emitDeclarationOnly --outDir dist && vite build"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.2",
+    "vite-plugin-css-injected-by-js": "^4.0.1"
+  }
+}

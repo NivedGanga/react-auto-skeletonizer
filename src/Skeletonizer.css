@@ -1,0 +1,48 @@
+/* Base shimmer effect */
+.skeleton-shimmer {
+  pointer-events: none !important;
+  user-select: none !important;
+  color: transparent !important;
+  border-color: transparent !important;
+  text-decoration: none !important;
+  animation: skeleton-shimmer-bg 1.5s infinite linear !important;
+  background-clip: padding-box !important;
+  background-color: transparent !important;
+}
+
+/* 1. Text node shimmer (simulates lines) */
+.skeleton-text {
+  background-image:
+    linear-gradient(90deg, transparent 0%, var(--skeleton-highlight-color, rgba(255, 255, 255, 0.4)) 50%, transparent 100%),
+    linear-gradient(transparent 15%, var(--skeleton-base-color, #e2e8f0) 15%, var(--skeleton-base-color, #e2e8f0) 85%, transparent 85%) !important;
+  background-size: 100vw 100%, 100% var(--skeleton-line-height, 1.5em) !important;
+  background-position: 100vw 0, 0 0;
+  background-repeat: repeat, repeat-y !important;
+  border-radius: 4px;
+}
+
+/* 2. Block and layout shimmer */
+.skeleton-block {
+  background-image: linear-gradient(90deg, var(--skeleton-base-color, #e2e8f0) 25%, var(--skeleton-highlight-color, #f8fafc) 50%, var(--skeleton-base-color, #e2e8f0) 75%) !important;
+  background-size: 100vw 100% !important;
+  border-radius: 6px;
+}
+
+/* 3. Image and Icon shimmer */
+.skeleton-image {
+  background-image: linear-gradient(90deg, var(--skeleton-base-color, #e2e8f0) 25%, var(--skeleton-highlight-color, #f8fafc) 50%, var(--skeleton-base-color, #e2e8f0) 75%) !important;
+  background-size: 100vw 100% !important;
+  border-radius: 50% !important;
+  fill: transparent !important;
+  stroke: transparent !important;
+}
+
+@keyframes skeleton-shimmer-bg {
+  0% {
+    background-position: 100vw 0, 0 0;
+  }
+
+  100% {
+    background-position: -100vw 0, 0 0;
+  }
+}
