@@ -297,10 +297,7 @@ body {
 }
 
 .product-description {
-  margin: 0.5rem 0;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  line-height: 1.5;
+  margin: 0.25rem 0;
   flex: 1;
 }
 

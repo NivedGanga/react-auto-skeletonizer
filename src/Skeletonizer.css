@@ -61,3 +61,10 @@
 .skeletonizer-hide-bg * {
   background-color: transparent !important;
 }
+
+/* ── bgColor ───────────────────────────────────────────────────────────── */
+/* Applies a root-configured background color to direct skeletonized items */
+/* without requiring a layout-affecting wrapper box.                        */
+.skeletonizer-bg-color>* {
+  background-color: var(--skeletonizer-bg-color) !important;
+}
