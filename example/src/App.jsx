@@ -4,6 +4,25 @@ import './index.css';
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [userData, setUserData] = useState(null);
+  const [isApiLoading, setIsApiLoading] = useState(true);
+
+  const fetchUserData = () => {
+    setIsApiLoading(true);
+    setUserData(null);
+    setTimeout(() => {
+      setUserData({
+        name: "Alex Johnson",
+        age: 28,
+        address: "123 React Street, Web City"
+      });
+      setIsApiLoading(false);
+    }, 2000);
+  };
+
+  React.useEffect(() => {
+    fetchUserData();
+  }, []);
 
   return (
     <div className="dashboard-container">
@@ -15,6 +34,25 @@ function App() {
       </header>
 
       <main className="dashboard-main">
+        {/* API Fetch Mock Example */}
+        <section className="api-fetch-example" style={{ marginBottom: '2rem' }}>
+          <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+            <h2 style={{ fontSize: '1.2rem', margin: 0 }}>API Loader Example</h2>
+            <button onClick={fetchUserData} className="toggle-btn" style={{ padding: '0.4rem 0.8rem', fontSize: '0.9rem' }}>
+              Refetch Real API
+            </button>
+          </header>
+          <Skeletonizer loading={isApiLoading}>
+            <div className="profile-section" style={{ border: '1px solid #333', borderRadius: '8px', padding: '1rem' }}>
+              <div className="profile-info">
+                <h3 style={{ margin: '0 0 0.5rem 0', fontSize: '1.2rem' }}>{userData?.name || "Loading Name..."}</h3>
+                <p style={{ margin: '0 0 0.5rem 0', color: '#aaa' }}>Age: {userData?.age || 50}</p>
+                <p style={{ margin: 0, color: '#aaa' }}>Address: {userData?.address || "Loading Address Placeholder..."}</p>
+              </div>
+            </div>
+          </Skeletonizer>
+        </section>
+
         {/* User Profile */}
         <Skeletonizer loading={loading} >
           <section className="profile-section">
