@@ -1,6 +1,6 @@
 {
   "name": "@nivedganga/react-auto-skeletonizer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Automatically converts any React UI tree into a shimmering skeleton loader.",
   "license": "MIT",
   "repository": {
