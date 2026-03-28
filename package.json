@@ -16,6 +16,7 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/react-auto-skeletonizer.es.js",
       "require": "./dist/react-auto-skeletonizer.umd.js"
     }
@@ -24,7 +25,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "npx tsc --emitDeclarationOnly --outDir dist && vite build"
+    "build": "vite build && npx tsc --emitDeclarationOnly --outDir dist"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0",
