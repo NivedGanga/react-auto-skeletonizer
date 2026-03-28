@@ -1,9 +1,41 @@
 import React, { useState } from 'react';
 import { Skeletonizer } from '../../src/Skeletonizer.jsx';
+import { ProductCard } from './ProductCard.jsx';
 import './index.css';
+
+const MOCK_PRODUCTS = [
+  {
+    id: 1,
+    title: 'Modern Wireless Headphones',
+    price: 129.99,
+    description: 'High-quality sound with active noise cancellation and 40-hour battery life.',
+    category: 'Electronics',
+    rating: { rate: 4.8, count: 124 },
+    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop'
+  },
+  {
+    id: 2,
+    title: 'Minimalist Leather Watch',
+    price: 85.00,
+    description: 'Elegant timepiece with a genuine leather strap and scratch-resistant glass.',
+    category: 'Accessories',
+    rating: { rate: 4.5, count: 89 },
+    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=300&fit=crop'
+  },
+  {
+    id: 3,
+    title: 'Ergonomic Standing Desk',
+    price: 450.00,
+    description: 'Spacious work surface with motorized height adjustment and memory presets.',
+    category: 'Furniture',
+    rating: { rate: 4.9, count: 56 },
+    image: 'https://images.unsplash.com/photo-1595246140625-573b715d11dc?w=300&h=300&fit=crop'
+  },
+];
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [distributorLoading, setDistributorLoading] = useState(true);
   const [userData, setUserData] = useState(null);
   const [isApiLoading, setIsApiLoading] = useState(true);
 
@@ -115,6 +147,40 @@ function App() {
             </table>
           </section>
         </Skeletonizer>
+
+        {/* ── Custom React Components (getOrCreateWrapper demo) ── */}
+        <section style={{ marginBottom: '2rem' }}>
+          <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+            <div>
+              <h2 style={{ fontSize: '1.2rem', margin: '0 0 0.25rem 0' }}>Custom React Components</h2>
+            </div>
+            <button
+              className="toggle-btn"
+              style={{ padding: '0.4rem 0.8rem', fontSize: '0.9rem', flexShrink: 0 }}
+              onClick={() => {
+                setDistributorLoading(true);
+                setTimeout(() => setDistributorLoading(false), 2000);
+              }}
+            >
+              {distributorLoading ? 'Loading…' : 'Reload Skeleton'}
+            </button>
+          </header>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1.5rem' }}>
+            {MOCK_PRODUCTS.map((p) => (
+              <Skeletonizer key={p.id} loading={distributorLoading} hideBgColour hideBorders bgColor='white'>
+                <ProductCard
+                  title={p.title}
+                  price={p.price}
+                  description={p.description}
+                  category={p.category}
+                  rating={p.rating}
+                  image={p.image}
+                />
+              </Skeletonizer>
+            ))}
+          </div>
+        </section>
       </main>
     </div>
   );

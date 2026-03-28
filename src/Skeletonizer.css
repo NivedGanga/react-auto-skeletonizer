@@ -32,7 +32,7 @@
 .skeleton-image {
   background-image: linear-gradient(90deg, var(--skeleton-base-color, #e2e8f0) 25%, var(--skeleton-highlight-color, #f8fafc) 50%, var(--skeleton-base-color, #e2e8f0) 75%) !important;
   background-size: 100vw 100% !important;
-  border-radius: 50% !important;
+  border-radius: 6px;
   fill: transparent !important;
   stroke: transparent !important;
 }
@@ -45,4 +45,19 @@
   100% {
     background-position: -100vw 0, 0 0;
   }
+}
+
+/* ── hideBorders ───────────────────────────────────────────────────────── */
+/* Zeroes out every border on all descendants of the skeleton               */
+/* root wrapper when the hideBorders prop is true.                          */
+.skeletonizer-hide-borders * {
+  border-color: transparent !important;
+  outline-color: transparent !important;
+}
+
+/* ── hideBgColour ──────────────────────────────────────────────────────── */
+/* Clears background-color (not background-image) so the component's own   */
+/* surface colours vanish, leaving only the shimmer gradients visible.      */
+.skeletonizer-hide-bg * {
+  background-color: transparent !important;
 }
