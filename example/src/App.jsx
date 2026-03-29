@@ -11,7 +11,8 @@ const MOCK_PRODUCTS = [
     description: 'High-quality sound with active noise cancellation and 40-hour battery life.',
     category: 'Electronics',
     rating: { rate: 4.8, count: 124 },
-    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop'
+    image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop',
+    items: ['Bluetooth 5.0', 'Active Noise Cancellation', '40h Battery', 'USB-C Charging', 'Foldable Design']
   },
   {
     id: 2,
@@ -20,7 +21,8 @@ const MOCK_PRODUCTS = [
     description: 'Elegant timepiece with a genuine leather strap and scratch-resistant glass.',
     category: 'Accessories',
     rating: { rate: 4.5, count: 89 },
-    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=300&fit=crop'
+    image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=300&fit=crop',
+    items: ['Swiss Movement', 'Genuine Leather', '3ATM Water Resistant', 'Safire Crystal', 'Night Glow']
   },
   {
     id: 3,
@@ -29,7 +31,8 @@ const MOCK_PRODUCTS = [
     description: 'Spacious work surface with motorized height adjustment and memory presets.',
     category: 'Furniture',
     rating: { rate: 4.9, count: 56 },
-    image: 'https://images.unsplash.com/photo-1595246140625-573b715d11dc?w=300&h=300&fit=crop'
+    image: 'https://images.unsplash.com/photo-1595246140625-573b715d11dc?w=300&h=300&fit=crop',
+    items: ['Motorized Height', 'Memory Presets', 'Cable Management', 'Anti-Collision Sensor', 'Solid Oak Top']
   },
 ];
 
@@ -176,6 +179,7 @@ function App() {
                   category={p.category}
                   rating={p.rating}
                   image={p.image}
+                  items={p.items}
                 />
               </Skeletonizer>
             ))}

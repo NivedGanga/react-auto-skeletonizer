@@ -47,6 +47,13 @@
   }
 }
 
+/* ── Hide Browser-Injected Text ────────────────────────────────────────── */
+/* Prevents things like text-overflow: ellipsis (...) or list numbers       */
+/* from being visible since they inherit the container's font color         */
+.skeletonizer-root * {
+  color: transparent !important;
+}
+
 /* ── hideBorders ───────────────────────────────────────────────────────── */
 /* Zeroes out every border on all descendants of the skeleton               */
 /* root wrapper when the hideBorders prop is true.                          */

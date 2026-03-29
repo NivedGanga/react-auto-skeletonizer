@@ -73,11 +73,25 @@ export const Skeletonizer = ({
 
     const SkeletonWrapper = (props: any): React.ReactElement | null => {
       // Hooks inside originalFn execute here, during SkeletonWrapper's render.
-      const output = (originalFn as React.FC<any>)(props);
-      if (output === null || output === undefined) return null;
-      // Re-run skeletonization on whatever the component rendered.
-      const result = processChildRef.current(output as React.ReactNode);
-      return result ?? null;
+      try {
+        const output = (originalFn as React.FC<any>)(props);
+        if (output === null || output === undefined) return null;
+        // Re-run skeletonization on whatever the component rendered.
+        const result = processChildRef.current(output as React.ReactNode);
+        return result ?? null;
+      } catch {
+        // Library components (e.g. MUI Tooltip, Typography) may throw when
+        // called outside their expected context.  Fall back to processing
+        // the children prop so we can still skeletonize their content.
+        if (props?.children) {
+          const processed = React.Children.map(
+            props.children,
+            (c: React.ReactNode) => processChildRef.current(c)
+          );
+          return <>{processed}</>;
+        }
+        return null;
+      }
     };
 
     SkeletonWrapper.displayName = `Skeleton(${(originalFn as any).displayName || originalFn.name || "Component"
@@ -152,6 +166,7 @@ export const Skeletonizer = ({
 
     if (isImage || isIcon) {
       return React.cloneElement(element, {
+        ref: null,
         className:
           `${element.props.className || ""} skeleton-image skeleton-shimmer`.trim(),
         ...(element.type === "img"
@@ -165,6 +180,7 @@ export const Skeletonizer = ({
 
     if (isEmptyLayout) {
       return React.cloneElement(element, {
+        ref: null,
         className:
           `${element.props.className || ""} skeleton-block skeleton-shimmer`.trim(),
       });
@@ -175,11 +191,15 @@ export const Skeletonizer = ({
         element.props.children,
         processChild
       );
-      return React.cloneElement(element, { children: processedChildren });
+      return React.cloneElement(element, { 
+        ref: null,
+        children: processedChildren 
+      });
     }
 
     // Fallback for unrecognised leaf nodes
     return React.cloneElement(element, {
+      ref: null,
       className:
         `${element.props.className || ""} skeleton-block skeleton-shimmer`.trim(),
     });
@@ -199,7 +219,7 @@ export const Skeletonizer = ({
   // Build the root class string
   const rootClass =
     [
-      className ? "skeletonizer-root" : "",
+      "skeletonizer-root",
       className,
       hideBorders ? "skeletonizer-hide-borders" : "",
       hideBgColour ? "skeletonizer-hide-bg" : "",

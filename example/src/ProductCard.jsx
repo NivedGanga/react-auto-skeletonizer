@@ -1,6 +1,7 @@
 import React from 'react';
+import { ClampList } from './clampList';
 
-export function ProductCard({ title, price, description, category, rating, image }) {
+export function ProductCard({ title, price, description, category, rating, image, items = [] }) {
   return (
     <div className="product-card">
       <div className="product-image-container">
@@ -13,7 +14,9 @@ export function ProductCard({ title, price, description, category, rating, image
           <span className="star-icon">★</span>
           {rating.rate} ({rating.count} reviews)
         </div>
-        <p className="product-description">{description}</p>
+        <div className="product-description">
+          <ClampList items={[description, ...items]} maxLines={2} />
+        </div>
         <div className="product-footer">
           <span className="product-price">${price}</span>
           <button className="add-to-cart-btn">Add to Cart</button>
