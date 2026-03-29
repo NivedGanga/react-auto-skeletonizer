@@ -15,7 +15,7 @@ Wrap any section of your UI with `Skeletonizer`, pass `loading={true}`, and the 
 ## Installation
 
 ```bash
-npm install @nivedganga/react-auto-skeletonizer
+npm install react-auto-skeletonizer
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ npm install @nivedganga/react-auto-skeletonizer
 ### Simple Usage
 ```jsx
 import React, { useEffect, useState } from "react";
-import { Skeletonizer } from "@nivedganga/react-auto-skeletonizer";
+import { Skeletonizer } from "react-auto-skeletonizer";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -44,7 +44,7 @@ function App() {
 
 ### Advanced Usage (Custom Components & Styling)
 ```jsx
-import { Skeletonizer } from "@nivedganga/react-auto-skeletonizer";
+import { Skeletonizer } from "react-auto-skeletonizer";
 import { ProductCard } from "./components/ProductCard";
 
 // Skeletonizer will automatically reach inside ProductCard and 
